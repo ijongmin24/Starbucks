@@ -279,6 +279,7 @@ a {
   height: 98px;
   margin: 0 auto;
   position: relative;
+  margin-top: 150px;
 }
 /* WHAT'S NEW 글자 */
 .sub_tit_wrap h2 {
