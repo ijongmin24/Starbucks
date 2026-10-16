@@ -1,0 +1,990 @@
+body {
+  font-family:
+    "nbg", "맑은 고딕", HelveticaNeue, DroidSans, Sans-serif, Helvetica;
+  font-size: 1em;
+  line-height: 1;
+  min-width: 320px;
+  overflow-x: hidden;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+img {
+  vertical-align: top;
+  max-width: 100%;
+}
+a {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  text-decoration: none;
+  vertical-align: baseline;
+  color: #666;
+  background: transparent;
+  cursor: pointer;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* 맨위에 배너  */
+#wrap {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+/* 헤더 */
+.headerbox {
+  width: 100%;
+  height: 120px;
+  background-color: #f6f5ef;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 10px 30px;
+  gap: 30px;
+  border-bottom: 1px solid #e5e5e5;
+  border-top: 2px solid #000;
+}
+
+.logo img {
+  width: 75px;
+  height: auto;
+  position: absolute;
+  top: 22px;
+  left: 400px;
+}
+
+.top_menu {
+  position: absolute;
+  top: 8px;
+  right: 456px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.top_menu span {
+  color: #555555;
+  cursor: pointer;
+}
+
+/* 구분선 */
+.top_menu span.a {
+  color: #e6e6e6;
+  cursor: default;
+}
+
+.top_menu span:not(.a):hover {
+  text-decoration: underline;
+}
+.top_menu span a,
+.top_menu span a:visited,
+.top_menu span a:hover,
+.top_menu span a:active {
+    color: inherit;
+    text-decoration: none;
+}
+.bottom_menu {
+  position: absolute;
+  top: 53px;
+  left: 690px;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 13px;
+  height: 74px;
+  font-size: 13px;
+  color: #333333;
+}
+
+/*1. 상단 메뉴 CSS*/
+
+/* 각각의 메뉴 */
+.menu_item {
+  height: 66px;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  white-space: nowrap; /*글자 자동 줄바꿈 방지*/
+  position: static;
+}
+
+/* 메뉴 글자 */
+.menu_text {
+  position: relative;
+  top: -12px;
+  left: 1px;
+}
+
+/* 메뉴 블록에 마우스를 올렸을 때 */
+.menu_item:hover {
+  background-color: #2c2a29;
+  color: #669900;
+}
+
+/* 메뉴 글자에 밑줄 */
+.menu_item:hover .menu_text {
+  text-decoration: underline;
+}
+
+/*2. 드롭다운 CSS*/
+
+/* 드롭다운 기본 상태 */
+.menu_dropdown {
+  position: fixed;
+  top: 119px;
+  left: 0;
+
+  width: 100%;
+  min-height: 180px;
+  padding: 20px 15px; /*드롭다운 내부의 위아래·좌우 여백*/
+  margin: 0;
+
+  grid-template-columns: repeat(5, 180px); /*드롭다운 안의 각 열 너비*/
+  justify-content: center;
+  gap: 30px; /*드롭다운 안에 있는 5개 열 사이의 간격*/
+
+  background-color: #2c2a29;
+  color: white;
+  z-index: 100;
+
+  /* 숨겨진 상태 */
+  display: none;
+}
+/* 드롭다운이 열렸을 때 */
+.menu_dropdown.active {
+  display: grid;
+}
+
+/* 마우스를 올리면 슬라이드 다운 */
+.menu_item:hover .menu_dropdown {
+  display: grid;
+  animation: slideDown 0.35s ease forwards;
+}
+/* 위에서 아래로 펼쳐지는 애니메이션 */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    clip-path: inset(0 0 100% 0);
+  }
+
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/*3. 드롭다운 안의 글자  css*/
+
+/* 제목 */
+.menu_dropdown h3 {
+  margin: 0 0 14px;
+  font-size: 14px;
+  font-weight: normal;
+  color: white;
+}
+
+/* 각 항목 */
+.menu_dropdown p {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: #aaa;
+  cursor: pointer;
+}
+
+/* 항목에 마우스를 올렸을 때 */
+.menu_dropdown p:hover {
+  text-decoration: underline;
+}
+.menu_dropdown h3:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.menu_dropdown h3 a,
+.menu_dropdown h3 a:visited,
+.menu_dropdown h3 a:hover,
+.menu_dropdown h3 a:active {
+    color: inherit;
+    text-decoration: none;
+}
+.menu_dropdown p a,
+.menu_dropdown p a:visited,
+.menu_dropdown p a:hover,
+.menu_dropdown p a:active {
+    color: inherit;
+    text-decoration: none;
+}
+.bottom_menu .menu_text a,
+.bottom_menu .menu_text a:visited,
+.bottom_menu .menu_text a:hover,
+.bottom_menu .menu_text a:active {
+    color: inherit;
+    text-decoration: none;
+}
+/* 상단 메뉴의 검색 버튼 */
+.search-btn {
+  width: 35px;
+  height: 35px;
+
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+  cursor: pointer;
+  flex-shrink: 0; /*flex-shrink: 0; display: flex;로 요소들을 배치했을 때, 공간이 부족해도 해당 요소의 크기가 줄어들지 않도록 해.*/
+}
+
+/* 돋보기 이미지 */
+.search-btn img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain; /*이미지 비율을 유지하면서 영역 안에 전부 표시*/
+}
+.top_menu > span {
+  display: inline-block;
+}
+/* 본문 전체 */
+#container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+/* WHAT'S NEW 타이틀 */
+.sub_tit_wrap {
+  width: 100%;
+  height: 100px;
+}
+
+.sub_tit_inner {
+  width: 1100px;
+  height: 98px;
+  margin: 0 auto;
+  position: relative;
+  margin-top: 150px;
+}
+/* WHAT'S NEW 글자 */
+.sub_tit_wrap h2 {
+  font:
+    bold 36px Avenir,
+    Arial,
+    georgia;
+  color: #222222;
+  padding-top: 30px;
+  position: relative;
+}
+/* WHAT'S NEW 타이틀 오른쪽 아이콘 */
+ul.smap {
+  position: absolute;
+  right: 0;
+  top: 60px;
+}
+ul.smap > li > .icon_home:hover {
+  cursor: pointer;
+}
+
+ul.smap > .en:hover {
+  cursor: pointer;
+}
+ul.smap > li {
+  float: left;
+  line-height: 14px;
+  margin: 0 3px;
+}
+
+ul > li {
+  list-style: none;
+}
+
+ul.smap > li:nth-child(3) {
+  font-size: 12px;
+  color: #666666;
+}
+/* 슬라이드 쇼 */
+.hcg-slider {
+  width: 100%;
+  text-align: center;
+}
+
+.hcg-slide-container {
+  width: 100%;
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hcg-slider-track {
+  width: 100%;
+  height: 100%;
+}
+
+.hcg-slides {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.hcg-slides img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 좌우 화살표 */
+#hcg-slide-prev,
+#hcg-slide-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#hcg-slide-prev {
+  left: 55px;
+}
+
+#hcg-slide-next {
+  right: 55px;
+}
+
+/* 화살표에 마우스를 올렸을 때 */
+#hcg-slide-prev:hover,
+#hcg-slide-next:hover {
+  background-color: white;
+  transition: all 0.5s ease;
+}
+
+/* 호버 시 화살표 색상 검정색 */
+#hcg-slide-prev:hover img,
+#hcg-slide-next:hover img {
+  filter: brightness(0);
+}
+
+#hcg-slide-prev img,
+#hcg-slide-next img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* 이미지 안쪽 아래의 현재 번호 */
+.hcg-slide-number {
+  position: absolute;
+  bottom: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 14px;
+  z-index: 2;
+  text-shadow: 1px 1px 3px black;
+}
+
+/* 슬라이드 안에 일시정지 아이콘 */
+.pause {
+  position: absolute;
+  left: 49%;
+  bottom: 15px;
+}
+.pause:hover {
+  cursor: pointer;
+}
+
+/* 이미지 아래쪽 가운데 점 표시 */
+.hcg-slide-dot-control {
+  position: absolute;
+  left: 50.5%;
+  bottom: 15px;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: auto;
+  margin-top: 0;
+  z-index: 3;
+}
+
+.hcg-slide-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 3px solid green;
+  cursor: pointer;
+}
+
+.hcg-slide-dot.active {
+  background: transparent;
+}
+
+/* 이미지 전환 효과 */
+.hcg-slides.fade-out {
+  animation: slideFadeOut 0.2s ease;
+}
+
+.hcg-slides.fade-in {
+  animation: slideFadeIn 0.4s ease;
+}
+
+@keyframes slideFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.hcg-slides.fade-effect {
+  animation: slowFade 3s ease-in-out;
+}
+
+@keyframes slowFade {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+/* 전체보기 영역 */
+.promotionArea {
+  width: 100%;
+  height: auto;
+  background: linear-gradient(
+    to bottom,
+    #7b7c7f 0,
+    #7b7c7f 70px,
+    transparent 70px
+  );
+}
+.promotionInner {
+  width: 1100px;
+  margin: 0 auto;
+}
+
+.promotionView {
+  height: 70px;
+  line-height: 70px;
+  background: url(https://www.starbucks.co.kr/common/img/whatsnew/green_bg.jpg);
+}
+
+.promotionView p {
+  text-align: center;
+  position: relative;
+  left: 20px;
+}
+
+.promotionView img {
+  vertical-align: middle;
+  transition: transform 0.3s;
+}
+
+.promotionView a {
+  font-size: 26px;
+  color: #ffffff;
+  vertical-align: middle;
+}
+.promotionView a:hover {
+  text-decoration: underline;
+}
+
+/* 접혀 있는 기사 목록 */
+.promotionArticles {
+  position: relative;
+  z-index: 1;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  background: #ffffff;
+  transition:
+    max-height 0.3s ease,
+    opacity 0.4s ease;
+}
+
+/* 전체보기를 눌렀을 때 */
+.promotionArea.open .promotionArticles {
+  max-height: 2000px;
+  opacity: 1;
+}
+/* 전체보기 메뉴가 숨겨져 있을 때 이미지도 숨김 */
+
+/* 메뉴가 열렸을 때 이미지 표시 */
+.edge {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -14px;
+  z-index: 2;
+}
+
+/* 화살표 회전 */
+.promotionArea.open .promotionView a img {
+  transform: rotate(180deg);
+}
+
+/* 기사 4칸 배치 */
+.promotionGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 258px);
+  justify-content: space-between;
+  gap: 15px 0px;
+  padding: 55px 0px;
+}
+.promotionGrid .tit {
+  grid-column: 1 / -1;
+  font-weight: bold;
+}
+
+/* 기사 카드 */
+.articleCard {
+  display: block;
+  color: #333;
+  text-decoration: none;
+  border: 1px solid #e1e1e1;
+}
+
+.articleCard img {
+  display: block;
+  width: 258px;
+  height: 258px;
+  object-fit: cover;
+}
+
+.articleCard p {
+  width: 258px;
+  padding: 12px 0 12px 0;
+  text-align: center;
+  vertical-align: middle;
+  height: 33px;
+}
+.articleCard p.p1 {
+  font-size: 16px;
+  color: #444444;
+  margin-bottom: 5px;
+  padding-top: 2px;
+  width: 90%;
+  margin: 0 auto;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+.articleCard p.p1::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-image: url("https://image.istarbucks.co.kr/upload/common/img/icon/icon_whats_new_pin.png");
+  text-align: center;
+}
+
+.articleCard p.p2 {
+  font-size: 12px;
+  margin-top: -30px;
+}
+.articleCard:hover p {
+  text-decoration: underline;
+}
+.newsArea {
+  width: 100%;
+  height: 70px;
+  position: relative;
+}
+
+.newsArea_left {
+  float: left;
+  width: 50%;
+  height: 70px;
+  background: #111;
+}
+.newsArea_right {
+  float: right;
+  width: 50%;
+  height: 70px;
+  background: url(https://image.istarbucks.co.kr/common/img/menu/useInfo_bg.jpg);
+}
+.newsArea_bg {
+  width: 1100px;
+  height: 70px;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  margin-left: -550px;
+  background: url(https://image.istarbucks.co.kr/common/img/menu/newsArea_bg2.jpg);
+}
+.newsArea_bgl {
+  width: 729px;
+  height: 70px;
+  line-height: 70px;
+  float: left;
+  position: relative;
+}
+.newsArea_bgl dt {
+  vertical-align: middle;
+  position: absolute;
+  left: 15px;
+  top: 26px;
+}
+.newsArea_bgl img.w_pic {
+  display: block;
+  position: static;
+  height: 17px;
+  width: auto;
+}
+.w_pic {
+  display: block;
+}
+
+.newsArea_bgl p.btn {
+  position: absolute;
+  right: 22px;
+  top: 18px;
+}
+.newsArea_bgl p.btn:hover {
+  cursor: pointer;
+}
+.newsArea_bgr {
+  width: 371px;
+  height: 70px;
+  float: right;
+  background: url(https://image.istarbucks.co.kr/common/img/menu/useInfo_app.png)
+    21px 11px no-repeat;
+  position: relative;
+}
+.newsArea_bgr p.tit {
+  position: absolute;
+  top: 18px;
+  left: 100px;
+}
+.w_pic {
+  display: block;
+}
+.newsArea_bgr p.btn {
+  position: absolute;
+  left: 321px;
+  top: 18px;
+}
+.newsArea_bgr p.btn:hover {
+  cursor: pointer;
+}
+/* 보도자료 옆 한 줄 문구 */
+.newsArea_bgl dd.newsText {
+  position: absolute;
+  left: 95px;
+  top: 18px;
+  width: 560px;
+  height: 30px;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+.newsArea_bgl dd.newsText a {
+  color: #cccccc;
+}
+
+.newsArea_bgl dd.newsText a:hover {
+  text-decoration: underline;
+}
+/* 1번 배너 */
+.bn1 {
+  width: 100%;
+  height: 430px;
+  background: url(https://www.starbucks.co.kr/common/img/whatsnew/promotion_bimg1.jpg)
+    20% 50% no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.b1_inner {
+  width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+.w_pic {
+  position: absolute;
+  top: 125px;
+  right: 480px;
+}
+.b1_txt01 {
+  width: 258px;
+  position: absolute;
+  left: 760px;
+  top: 115px;
+}
+.b1_btn01 {
+  width: 120px;
+  border: 2px solid #fff;
+  border-radius: 3px;
+  height: 35px;
+  line-height: 34px;
+  position: absolute;
+  right: 610px;
+  top: 253px;
+  color: white;
+  text-align: center;
+}
+/*  2번 배너*/
+.bn2 {
+  width: 100%;
+  height: 430px;
+  background: url(https://www.starbucks.co.kr/common/img/whatsnew/promotion_bimg2.jpg)
+    20% 50% no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.b2_inner {
+  width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+.w_pic2 {
+  position: absolute;
+  top: 125px;
+  left: 405px;
+}
+.b2_txt02 {
+  width: 258px;
+  position: absolute;
+  left: 760px;
+  top: 115px;
+}
+.b2_btn02 {
+  width: 120px;
+  border: 2px solid #222;
+  border-radius: 3px;
+  height: 35px;
+  line-height: 34px;
+  position: absolute;
+  left: 405px;
+  top: 253px;
+  text-align: center;
+}
+/* 3번 배너 */
+.bn3 {
+  width: 100%;
+  height: 430px;
+  background: url(https://www.starbucks.co.kr/common/img/whatsnew/promotion_bimg3.jpg)
+    20% 50% no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.b3_inner {
+  width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+.w_pic3 {
+  position: absolute;
+  top: 175px;
+  right: 560px;
+}
+.b3_txt03 {
+  width: 258px;
+  position: absolute;
+  left: 760px;
+  top: 115px;
+}
+.b3_btn03 {
+  width: 120px;
+  border: 2px solid #fff;
+  border-radius: 3px;
+  height: 35px;
+  line-height: 34px;
+  position: absolute;
+  right: 707px;
+  top: 300px;
+  color: white;
+  text-align: center;
+}
+/* 4번 배너 */
+.bn4 {
+  width: 100%;
+  height: 430px;
+  background: url(https://www.starbucks.co.kr/common/img/whatsnew/promotion_bimg4.jpg)
+    20% 50% no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.b4_inner {
+  width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+.w_pic4 {
+  position: absolute;
+  top: 150px;
+  left: 405px;
+}
+.b4_txt04 {
+  width: 258px;
+  position: absolute;
+  left: 760px;
+  top: 115px;
+}
+.b4_btn04 {
+  width: 120px;
+  border: 2px solid #222;
+  border-radius: 3px;
+  height: 35px;
+  line-height: 34px;
+  position: absolute;
+  left: 405px;
+  top: 280px;
+  text-align: center;
+}
+
+.b1_btn01:hover,
+.b3_btn03:hover {
+  cursor: pointer;
+  background-color: #ffffff;
+  color: #222222;
+  text-decoration: underline;
+  transition: all 0.3s ease;
+}
+.b2_btn02:hover,
+.b4_btn04:hover {
+  cursor: pointer;
+  background-color: #222;
+  color: #fff;
+  text-decoration: underline;
+  transition: all 0.5s ease;
+}
+/* 보도자료 롤링 */
+.newsText {
+  height: 30px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: newsUp 18s steps(1, end) infinite;
+}
+
+.newsText a {
+  display: block;
+  height: 30px;
+  line-height: 30px;
+  white-space: nowrap;
+  color: #cccccc;
+}
+
+.newsTextTrack {
+  display: flex;
+  flex-direction: column;
+}
+
+.newsTextTrack a {
+  flex: 0 0 30px;
+}
+
+/* Footer 전체 */
+
+.footer {
+  width: 100%;
+  background-color: #2c2a29;
+  position: relative;
+}
+
+/* Footer 오른쪽 세로 로고 */
+
+.footer-logo {
+  position: absolute;
+  top: 40px;
+  right: 8%;
+  width: 15px;
+  height: auto;
+  z-index: 2;
+}
+
+/* Footer 상단 테이블 */
+
+.footer-table {
+  width: 1100px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding-top: 35px;
+  padding-bottom: 10px;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 20px 0;
+  color: white;
+}
+
+/* 카테고리 제목 */
+
+.footer-table th {
+  text-align: left;
+  vertical-align: top;
+  font-size: 15px;
+  font-weight: normal;
+  padding-bottom: 23px;
+  white-space: nowrap;
+}
+
+/* 카테고리 안 내용들 */
+
+.footer-table td {
+  vertical-align: top;
+}
+.footer-table td a {
+  display: flex;
+  color: white;
+  font-size: 14px;
+  text-decoration: none;
+  line-height: 1.7;
+}
+
+.footer-table td a:hover {
+  text-decoration: underline;
+}
+
+/* Footer 맨밑 배너 */
+
+.footer-bottom-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
