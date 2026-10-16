@@ -1,0 +1,622 @@
+body {
+  font-family:
+    "nbg", "맑은 고딕", HelveticaNeue, DroidSans, Sans-serif, Helvetica;
+  font-size: 1em;
+  line-height: 1;
+  min-width: 320px;
+  overflow-x: hidden;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+div {
+  display: block;
+  unicode-bidi: isolate;
+}
+/* 전체 감싸기 */
+#wrap {
+  position: relative;
+  width: 100%;
+  padding-top: 130px;
+}
+/*  헤더 */
+.headerbox {
+  width: 100%;
+  height: 100px;
+  background-color: #f6f5ef;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 10px 30px;
+  gap: 30px;
+  border-bottom: 1px solid #e5e5e5;
+  border-top: 2px solid #000;
+}
+
+.logo img {
+  width: 75px;
+  height: auto;
+  position: absolute;
+  top: 22px;
+  left: 400px;
+}
+
+.top_menu {
+  position: absolute;
+  top: 8px;
+  right: 456px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.top_menu span {
+  color: #555555;
+  cursor: pointer;
+}
+
+/* 구분선 */
+.top_menu span.a {
+  color: #e6e6e6;
+  cursor: default;
+}
+
+.top_menu span:not(.a):hover {
+  text-decoration: underline;
+}
+.top_menu span a,
+.top_menu span a:visited,
+.top_menu span a:hover,
+.top_menu span a:active {
+    color: inherit;
+    text-decoration: none;
+}
+
+.bottom_menu {
+  position: absolute;
+  top: 53px;
+  left: 690px;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 13px;
+  height: 74px;
+  font-size: 13px;
+  color: #333333;
+}
+
+/*1. 상단 메뉴 CSS*/
+
+/* 각각의 메뉴 */
+.menu_item {
+  height: 66px;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  white-space: nowrap; /*글자 자동 줄바꿈 방지*/
+  position: static;
+}
+
+/* 메뉴 글자 */
+.menu_text {
+  position: relative;
+  top: -12px;
+  left: 1px;
+}
+
+/* 메뉴 블록에 마우스를 올렸을 때 */
+.menu_item:hover {
+  background-color: #2c2a29;
+  color: #669900;
+}
+
+/* 메뉴 글자에 밑줄 */
+.menu_item:hover .menu_text {
+  text-decoration: underline;
+}
+
+/*2. 드롭다운 CSS*/
+
+/* 드롭다운 기본 상태 */
+.menu_dropdown {
+  position: fixed;
+  top: 119px;
+  left: 0;
+
+  width: 100%;
+  min-height: 180px;
+  padding: 20px 15px; /*드롭다운 내부의 위아래·좌우 여백*/
+  margin: 0;
+
+  grid-template-columns: repeat(5, 180px); /*드롭다운 안의 각 열 너비*/
+  justify-content: center;
+  gap: 30px; /*드롭다운 안에 있는 5개 열 사이의 간격*/
+
+  background-color: #2c2a29;
+  color: white;
+  z-index: 100;
+
+  /* 숨겨진 상태 */
+  display: none;
+}
+/* 드롭다운이 열렸을 때 */
+.menu_dropdown.active {
+  display: grid;
+}
+
+/* 마우스를 올리면 슬라이드 다운 */
+.menu_item:hover .menu_dropdown {
+  display: grid;
+  animation: slideDown 0.35s ease forwards;
+}
+/* 위에서 아래로 펼쳐지는 애니메이션 */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    clip-path: inset(0 0 100% 0);
+  }
+
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/*3. 드롭다운 안의 글자  css*/
+
+/* 제목 */
+.menu_dropdown h3 {
+  margin: 0 0 14px;
+  font-size: 14px;
+  font-weight: normal;
+  color: white;
+}
+
+/* 각 항목 */
+.menu_dropdown p {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: #aaa;
+  cursor: pointer;
+}
+
+/* 항목에 마우스를 올렸을 때 */
+.menu_dropdown p:hover {
+  text-decoration: underline;
+}
+.menu_dropdown h3:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.menu_dropdown h3 a,
+.menu_dropdown h3 a:visited,
+.menu_dropdown h3 a:hover,
+.menu_dropdown h3 a:active {
+    color: inherit;
+    text-decoration: none;
+}
+.menu_dropdown p a,
+.menu_dropdown p a:visited,
+.menu_dropdown p a:hover,
+.menu_dropdown p a:active {
+    color: inherit;
+    text-decoration: none;
+}
+.bottom_menu .menu_text a,
+.bottom_menu .menu_text a:visited,
+.bottom_menu .menu_text a:hover,
+.bottom_menu .menu_text a:active {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* 상단 메뉴의 검색 버튼 */
+.search-btn {
+  width: 35px;
+  height: 35px;
+
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+  cursor: pointer;
+  flex-shrink: 0; /*flex-shrink: 0; display: flex;로 요소들을 배치했을 때, 공간이 부족해도 해당 요소의 크기가 줄어들지 않도록 해.*/
+}
+
+/* 돋보기 이미지 */
+.search-btn img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain; /*이미지 비율을 유지하면서 영역 안에 전부 표시*/
+}
+.top_menu > span {
+  display: inline-block;
+}
+/* 이벤트 배너 */
+.sub_tit_wrap {
+  width: 100%;
+  height: 98px;
+  background: #ffffff;
+}
+.sub_tit_inner {
+  width: 1100px;
+  height: 91px;
+  margin: 0 auto;
+  position: relative;
+}
+.sub_tit_wrap h2 {
+  font:
+    bold 36px Avenir,
+    Arila,
+    georgia;
+  color: #222222;
+  padding-top: 30px;
+  position: relative;
+}
+/* 이벤트 배너 오른쪽 작은것들 */
+ul.smap {
+  position: absolute;
+  right: 0;
+  top: 60px;
+}
+ul.smap .home,
+.en,
+.this {
+  cursor: pointer;
+}
+
+.en a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  vertical-align: top;
+  max-width: 100%;
+}
+li {
+  list-style: none;
+}
+ul.smap img.arrow {
+  position: relative;
+  top: 2px;
+}
+ul.smap li {
+  vertical-align: middle;
+  float: left;
+  height: 16px;
+  line-height: 16px;
+  margin: 0 2.5px;
+}
+ul.smap .en {
+  font-size: 12px;
+  color: #666666;
+}
+span.this {
+  font-size: 14px;
+  color: #666666;
+}
+/* 컨테이너 */
+#container {
+  width: 100%;
+}
+.wn_cont {
+  left: 50%;
+  margin: 0 0 0 -550px;
+  position: relative;
+  width: 1100px;
+}
+section.campaign_view_wrap {
+  position: relative;
+  margin-bottom: 60px;
+}
+/* 헤더 */
+section.campaign_view_wrap > header {
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  padding: 20px 140px 38px 20px;
+}
+/* 10월 이달의 샌드위치  */
+section.campaign_view_wrap > header h3 {
+  position: relative;
+  float: left;
+  font-size: 18px;
+  font-weight: bold;
+  color: #222222;
+}
+span.date {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: normal;
+  color: #666666;
+  padding-left: 5px;
+}
+section.campaign_view_wrap > header ul.sns_wrap {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  height: 28px;
+  background: url(https://www.starbucks.co.kr/common/img/whatsnew/cpv_line.png)
+    0 0 no-repeat;
+}
+section.campaign_view_wrap > header ul.sns_wrap .sns {
+  cursor: pointer;
+}
+section.campaign_view_wrap > header ul.sns_wrap li {
+  float: left;
+  padding-left: 8px;
+}
+
+img {
+  vertical-align: top;
+  max-width: 100%;
+}
+/* 기사 본문 */
+article.campaign_view_info {
+  padding: 60px 50px 0 50px;
+}
+article.campaign_view_info_inner {
+  position: relative;
+}
+.monthlysandwich {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.m_img {
+  position: relative;
+  overflow: hidden;
+}
+.btn_campaign_wrap {
+  width: 100%;
+  height: 45px;
+  position: relative;
+  padding-top: 20px;
+}
+p.btn_campaign {
+  border-radius: 3px;
+  height: 45px;
+  width: 84px;
+  background: #666666;
+  margin-top: 20px;
+  position: absolute;
+  right: 50px;
+  top: 0;
+}
+/* 본문 밑 목록 버튼 */
+span.list {
+  display: block;
+  font-size: 14px;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  height: 45px;
+  line-height: 45px;
+  width: 100%;
+}
+span.list:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+/* 슬라이드 */
+.slides_tit_wrap {
+  position: relative;
+  margin-bottom: 80px;
+}
+/* 슬라이드 제목 */
+.campaign_list {
+  position: relative;
+}
+dt {
+  padding: 21px;
+  background: #f4f4f2;
+  margin-bottom: 21px;
+  border-radius: 3px;
+  overflow: hidden;
+  font-size: 18px;
+  font-weight: bold;
+  color: #222222;
+}
+
+/* 슬라이드 전체 영역 */
+.slide {
+  width: 100%;
+  max-width: 1200px;
+  margin: 50px auto;
+  position: relative;
+}
+
+/* 사진이 보이는 영역 */
+.slideViewport {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* 페이지 3개를 가로로 배치 */
+.slideTrack {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+/* 한 페이지에 사진 3개 */
+.slidePage {
+  flex: 0 0 100%;
+  min-width: 0;
+  box-sizing: border-box;
+
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+}
+
+/* 사진 */
+.slidePage img {
+  display: block;
+  max-width: 100%;
+  border-radius: 3px;
+  text-align: center;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+/* 슬라이드 글씨 */
+.slidePage p {
+  margin-top: 25px;
+  bottom: 0;
+  color: #444;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  width: 100%;
+  cursor: pointer;
+}
+.slidePage p span {
+  color: #666;
+  font-size: 12px;
+}
+/* 좌우 화살표 */
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  border: none;
+  background: white;
+  color: #333;
+  font-size: 28px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.prev {
+  left: -46px;
+}
+
+.next {
+  right: -46px;
+}
+
+/* 페이지 점 */
+.slideDots {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+/* 점 모양 */
+.dot {
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #ccc;
+  cursor: pointer;
+}
+
+/* 현재 페이지의 점 */
+.dot.active {
+  background: url(https://www.starbucks.co.kr/common/img/common/bnr_slider_pager.png);
+}
+.pause {
+  background: url(https://www.starbucks.co.kr/common/img/common/bnr_slider_play.png)
+    right 0;
+  height: 12px;
+  width: 9px;
+  border: none;
+  cursor: pointer;
+}
+/* 화면이 좁을 때 화살표 위치 */
+@media (max-width: 1300px) {
+  .prev {
+    left: 5px;
+  }
+
+  .next {
+    right: 5px;
+  }
+}
+/* Footer 전체 */
+
+.footer {
+  width: 100%;
+  background-color: #2c2a29;
+  position: relative;
+}
+/* Footer 오른쪽 세로 로고 */
+
+.footer-logo {
+  position: absolute;
+  top: 40px;
+  right: 8%;
+  width: 15px;
+  height: auto;
+  z-index: 2;
+}
+
+/* Footer 상단 테이블 */
+
+.footer-table {
+  width: 1100px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding-top: 35px;
+  padding-bottom: 10px;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 20px 0;
+  color: white;
+}
+
+/* 카테고리 제목 */
+
+.footer-table th {
+  text-align: left;
+  vertical-align: top;
+  font-size: 15px;
+  font-weight: normal;
+  padding-bottom: 23px;
+  white-space: nowrap;
+}
+
+/* 카테고리 안 내용들 */
+
+.footer-table td {
+  vertical-align: top;
+}
+.footer-table td a {
+  display: flex;
+  color: white;
+  font-size: 14px;
+  text-decoration: none;
+  line-height: 1.7;
+}
+
+.footer-table td a:hover {
+  text-decoration: underline;
+}
+
+/* Footer 맨밑 배너 */
+
+.footer-bottom-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
